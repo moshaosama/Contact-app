@@ -1,5 +1,4 @@
 import React from "react";
-import { CiSquarePlus } from "react-icons/ci";
 
 interface BtnProps {
   Title: string;
