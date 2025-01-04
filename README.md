@@ -16,9 +16,8 @@ This project is a contact management system where you can add, edit, and delete 
 
 - **Backend**: Java, Spring Boot
 - **Frontend**: React
-- **Database**: (specify if you're using a database like MySQL, PostgreSQL, or MongoDB)
+- **Database**: PostgreSQL
 
-## Setup Instructions
 
 ### Backend Setup (Spring Boot)
 
