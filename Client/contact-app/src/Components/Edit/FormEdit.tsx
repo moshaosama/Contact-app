@@ -7,6 +7,12 @@ import { Link, useParams } from "react-router";
 const FormEdit = () => {
   const [list, setList] = useState<ListData | null>(null);
   const id = useParams();
+  const [Name, setName] = useState<string>(list?.name!);
+  const [Email, setEmail] = useState<string>(list?.email!);
+  const [Phone, setPhone] = useState<string>(list?.phone!);
+  const [Address, setAddress] = useState<string>(list?.location!);
+  const [Title, setTitle] = useState<string>(list?.jop!);
+  const [Status, setStatus] = useState<string>(list?.status!);
 
   useEffect(() => {
     fetch(`http://localhost:8080/Contact/${id?.id}`)
@@ -26,8 +32,8 @@ const FormEdit = () => {
             <Input
               labelName="Name"
               text="text"
-              Value={list?.name!}
               key={list?.id}
+              handleChange={(e) => setName(e.target.value)}
             />
           </p>
           <p>
@@ -36,6 +42,7 @@ const FormEdit = () => {
               text="text"
               Value={list?.email!}
               key={list?.id}
+              handleChange={(e) => setEmail(e.target.value)}
             />
           </p>
         </div>
@@ -46,6 +53,7 @@ const FormEdit = () => {
               text="text"
               Value={list?.phone!}
               key={list?.id}
+              handleChange={(e) => setPhone(e.target.value)}
             />
           </p>
           <p>
@@ -54,6 +62,7 @@ const FormEdit = () => {
               text="text"
               Value={list?.location!}
               key={list?.id}
+              handleChange={(e) => setAddress(e.target.value)}
             />
           </p>
         </div>
@@ -64,6 +73,7 @@ const FormEdit = () => {
               text="text"
               Value={list?.jop!}
               key={list?.id}
+              handleChange={(e) => setTitle(e.target.value)}
             />
           </p>
           <p>
@@ -72,34 +82,55 @@ const FormEdit = () => {
               text="text"
               Value={list?.status!}
               key={list?.id}
+              handleChange={(e) => setStatus(e.target.value)}
             />
           </p>
         </div>
       </form>
       <div className="flex justify-between items-center my-5">
-        <Button
-          Title="Save"
-          Margin="0"
-          Color="blue-300"
-          ColorHover="blue-500"
-        />
+        <Link to={"/"}>
+          <Button
+            Title="Save"
+            Margin="0"
+            Color="blue-300"
+            handleClick={() => {
+              fetch(`http://localhost:8080/EditContact/${id?.id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  name: Name,
+                  jop: Title,
+                  email: Email,
+                  location: Address,
+                  phone: Phone,
+                  status: Status,
+                }),
+              }).then((res) => {
+                return res.json();
+              });
+            }}
+          />
+        </Link>
 
-        <Button
-          Title="Delete"
-          Margin="0"
-          Color="red-600"
-          ColorHover="red-500"
-          handleClick={async () => {
-            await fetch(`http://localhost:8080/deleteContact/${id?.id}`, {
-              method: "DELETE",
-              headers: {
-                "Content-type": "application/json",
-              },
-            }).then((res) => {
-              return res.json();
-            });
-          }}
-        />
+        <Link to={"/"}>
+          <Button
+            Title="Delete"
+            Margin="0"
+            Color="red-600"
+            handleClick={async () => {
+              await fetch(`http://localhost:8080/deleteContact/${id?.id}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-type": "application/json",
+                },
+              }).then((res) => {
+                return res.json();
+              });
+            }}
+          />
+        </Link>
       </div>
     </>
   );

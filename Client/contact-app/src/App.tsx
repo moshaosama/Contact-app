@@ -18,7 +18,6 @@ function App() {
         <Button
           Title="Add New"
           Color="blue-300"
-          ColorHover="blue-500"
           Margin="6"
           Element={<CiSquarePlus className="text-xl" />}
           handleClick={() => setActive(true)}

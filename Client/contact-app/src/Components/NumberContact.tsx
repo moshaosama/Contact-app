@@ -11,7 +11,7 @@ const NumberContact = () => {
       .then((data) => {
         setLists(data);
       });
-  }, []);
+  }, [lists]);
   return (
     <>
       <div className="m-6 text-xl font-bold">

@@ -88,7 +88,6 @@ const FormAdd = ({ setActive, Active }: FormAddProps) => {
             Title="Save"
             Margin="0"
             Color="blue-300"
-            ColorHover="blue-500"
             handleClick={() => {
               fetch("http://localhost:8080/createContact", {
                 method: "POST",

@@ -28,17 +28,17 @@ const Card = () => {
       .then((data) => {
         setLists(data);
       });
-  }, []);
+  }, [lists]);
 
   return (
     <>
-      <div className="grid grid-cols-4 gap-y-10 my-10">
+      <div className="grid grid-cols-4 max-sm:grid-cols-1 gap-y-10 my-10">
         {lists.length > 0 ? (
           lists.map((el: ListData) => {
             return (
               <>
                 <Suspense fallback={"Loading..."}>
-                  <div className="mx-16 bg-blue-200 p-5 w-80 rounded-xl shadow-xl hover:-translate-y-3 transition-all duration-300 cursor-pointer">
+                  <div className="mx-16 bg-blue-200 p-5 w-80 max-sm:mx-6  rounded-xl shadow-xl hover:-translate-y-3 transition-all duration-300 cursor-pointer">
                     <Link to={`/edit/${el.id}`}>
                       <div className="flex items-center gap-3">
                         <div>
