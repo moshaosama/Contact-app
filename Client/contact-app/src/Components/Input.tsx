@@ -1,9 +1,13 @@
+import React from "react";
+
 interface inputProps {
   labelName: string;
   text: string;
+  Value?: string;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ labelName, text }: inputProps) => {
+const Input = ({ labelName, text, Value, handleChange }: inputProps) => {
   return (
     <>
       <div className="flex flex-col gap-2">
@@ -13,7 +17,9 @@ const Input = ({ labelName, text }: inputProps) => {
         <input
           id="labelName"
           type={text}
-          className="p-1 w-72 max-sm:w-32 rounded-lg shadow-lg"
+          value={Value}
+          className="p-1 w-72 max-sm:w-32 rounded-lg shadow-lg border border-solid border-black"
+          onChange={handleChange}
         />
       </div>
     </>

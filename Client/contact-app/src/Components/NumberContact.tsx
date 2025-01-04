@@ -1,10 +1,21 @@
-
+import { useState, useEffect } from "react";
+import { ListData } from "./Card";
 
 const NumberContact = () => {
+  const [lists, setLists] = useState<ListData[] | []>([]);
+  useEffect(() => {
+    fetch("http://localhost:8080/Contacts")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setLists(data);
+      });
+  }, []);
   return (
     <>
-      <div className="m-16  text-xl font-bold">
-        <h1>Conatct (0)</h1>
+      <div className="m-6 text-xl font-bold">
+        <h1>Conatct ({lists.length})</h1>
       </div>
     </>
   );

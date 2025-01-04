@@ -1,4 +1,3 @@
-
 import { BiArrowBack } from "react-icons/bi";
 import { Link } from "react-router";
 import FormEdit from "./FormEdit";
@@ -6,7 +5,7 @@ import FormEdit from "./FormEdit";
 const EditCard = () => {
   return (
     <>
-      <div className="mx-16">
+      <div className="mx-16 my-10">
         <div>
           <Link to={"/"}>
             <h1 className="flex items-center gap-2 cursor-pointer hover:underline transition-all duration-300">
